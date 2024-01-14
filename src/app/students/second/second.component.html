@@ -1,0 +1,40 @@
+<p>Good Luck!!!!</p>
+<ul class="list-group">
+    <li *ngFor="let student of studentList" class="list-group-item"
+    [ngClass]="{'list-group-item-success':student.active,
+                'list-group-item-danger':!student.active}"
+    [ngStyle]="{'border':student.avgMarks>90? 30+'px,black':10+'px,black'}"
+    >
+        
+        <div class="row">
+            <div class="col-1">
+                {{student.name}}
+            </div>
+            <div class="col-3">
+                {{student.tel}}
+            </div>
+            <div class="col-2">
+                <button class="btn btn-primary" (click)="deleteStudent(student.id)">delete</button>
+            </div>
+            <div class="col-2">
+                <button class="btn btn-primary" (click)="editStudent(student)">edit</button>
+            </div>
+            <div *ngIf="student.avgMarks>90">
+                {{student.avgMarks}}
+            </div>
+            <div *ngIf="student.active==false">
+                ho, no!!!
+            </div>
+        </div>
+    </li>
+
+</ul>
+<br>
+<button class="btn btn-primary" (click)="addNewStudent()" >new student</button>
+<br>
+selectedStudent: {{selectedStudent | json}}
+<student-details [student]="selectedStudent" (onSaveStudent)="saveStudentToList($event)"></student-details>
+
+<div *ngIf="is==true">
+    The student was saved successfully
+</div>
