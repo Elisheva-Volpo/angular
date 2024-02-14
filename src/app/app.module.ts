@@ -1,18 +1,22 @@
 import { NgModule } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
 import { Appcomponent } from "./app.component";
-import { SecondComponent } from './students/second/second.component';
-import { StudentDetailsComponent } from './students/student-details/student-details.component';
-import { ReactiveFormsModule } from "@angular/forms";
-import { StudentServise } from "./students/student.service";
-import { PromiseStudent } from "./students/promise-student.servise";
-import { HttpClient, HttpClientModule } from "@angular/common/http";
 import { StudentsModule } from "./students/students.module";
+import { Route,RouterModule } from "@angular/router";
+import { SecondComponent } from "./students/second/second.component";
+import { HomeComponent } from "./home/home.component";
+
+const APP_ROUTES:Route[]=[
+    {path:"",component:HomeComponent,pathMatch:"full"},
+    {path:"students",component:SecondComponent},
+
+
+]
 
 @NgModule({
     declarations:[Appcomponent],
     providers:[],
-    imports:[BrowserModule,StudentsModule],
+    imports:[BrowserModule,StudentsModule,RouterModule.forRoot(APP_ROUTES)],
     bootstrap:[Appcomponent]
 })
 

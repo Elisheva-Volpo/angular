@@ -60,11 +60,16 @@ export class SecondComponent {
   is: boolean = false;
 
   deleteStudent = (id: number) => {
-    const studentToDelete = this.studentList.find(x => x.id == id);
-    if (studentToDelete) {
-      const index = this.studentList.indexOf(studentToDelete);
-      this.studentList.splice(index, 1);
-    }
+
+    this.studentServise.deleteStudent(id);
+    this.studentServise.getStudentsFromServer().subscribe(data => {
+      this.studentList = data;
+    });
+    // const studentToDelete = this.studentList.find(x => x.id == id);
+    // if (studentToDelete) {
+    //   const index = this.studentList.indexOf(studentToDelete);
+    //   this.studentList.splice(index, 1);
+    // }
   }
 
   addNewStudent = () => {

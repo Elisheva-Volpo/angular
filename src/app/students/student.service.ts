@@ -29,6 +29,12 @@ export class StudentServise {
         return list;
     }
 
+     deleteStudent=(s:number)=>{
+        let status=this._http.delete(`api/Student/${s}`);
+        console.log(status);
+        
+     }
+
 
     // postStudent = (s: Student) => {
     //     console.log("in post in client");
@@ -37,6 +43,8 @@ export class StudentServise {
     //     this._http.post(`api/Student/${s}`,s);
     //     //console.log(a);
     // }
+
+
     postStudent(s: Student){
         // let options = new Headers();
         // options.append("Content-Type", "application/json");
